@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <ctype.h>
 
-#include "raw_mode.h"
+#include "editor.h"
 
 int main() {
 	enter_RAW_MODE();
