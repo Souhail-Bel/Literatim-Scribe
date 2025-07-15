@@ -13,6 +13,6 @@
 	#define DEBUG_PRINT(fmt, ...) do {} while(0)
 #endif
 
-void errMsg(const char* format, ...);
+void erred(void);
 
 #endif
