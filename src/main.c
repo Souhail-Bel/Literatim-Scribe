@@ -13,8 +13,8 @@ int main() {
 
 	while( read(STDIN_FILENO, &c, 1) && (c != 'q'))
 		// Check that it's printable
-		if(iscntrl(c)) printf("%d\n",c);
-		else printf("%d ('%c')\n",c, c);
+		if(iscntrl(c)) printf("%d\r\n",c);
+		else printf("%d ('%c')\r\n",c, c);
 	
 	
 	exit_RAW_MODE();
