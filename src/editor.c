@@ -10,6 +10,8 @@ static struct termios orig_termios;
 
 
 void disable_RAW_MODE(void){
+	write(STDOUT_FILENO, "\033[2J", 4);
+	write(STDOUT_FILENO, "\033[H", 3);
 	if(tcsetattr(STDIN_FILENO, TCSAFLUSH, &orig_termios) == -1) erred();
 }
 

@@ -10,6 +10,7 @@ int main() {
 	RAW_MODE();
 	
 	while(1){
+		refreshSCREEN();
 		processKEY_PRESS();
 	}
 	

@@ -1,5 +1,8 @@
+#include <termios.h>
+#include <unistd.h>
 #include <stdlib.h>
-#include <debug.h>
+
+#include "debug.h"
 
 /*
 
@@ -12,6 +15,9 @@ This should be well enough.
 */
 
 void erred(void){
+	write(STDOUT_FILENO, "\033[2J", 4);
+	write(STDOUT_FILENO, "\033[H", 3);
+	
 	perror("\033[30;101m ►\033[3mERROR:\033[0m ");
 	exit(-1);
 }
