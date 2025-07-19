@@ -4,19 +4,17 @@
 #include <ctype.h>
 
 #include "editor.h"
+#include "io_handler.h"
 
 int main() {
-	enter_RAW_MODE();
+	RAW_MODE();
 	
-	// Input character
-	char c;
-
-	while( read(STDIN_FILENO, &c, 1) && (c != 'q'))
-		// Check that it's printable
-		if(iscntrl(c)) printf("%d\r\n",c);
-		else printf("%d ('%c')\r\n",c, c);
+	while(1){
+		processKEY_PRESS();
+	}
 	
 	
-	exit_RAW_MODE();
+	// If exiting RAW mode is done through this way, it will break the terminal
+	// exit_RAW_MODE();
 	return 0;
 }

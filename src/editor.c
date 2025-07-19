@@ -1,13 +1,22 @@
 #include <termios.h>
 #include <unistd.h>
+#include <stdlib.h>
+
 #include "debug.h"
 #include "editor.h"
 
 // Current terminal
 static struct termios orig_termios;
 
-void enter_RAW_MODE(void){
+
+void disable_RAW_MODE(void){
+	if(tcsetattr(STDIN_FILENO, TCSAFLUSH, &orig_termios) == -1) erred();
+}
+
+void RAW_MODE(void){
 	if(tcgetattr(STDIN_FILENO, &orig_termios) == -1) erred();
+	
+	atexit(disable_RAW_MODE);
 	
 	// Make copy from global
 	struct termios raw = orig_termios;
@@ -45,7 +54,3 @@ void enter_RAW_MODE(void){
 	if(tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw) == -1) erred();
 }
 
-
-void exit_RAW_MODE(void){
-	if(tcsetattr(STDIN_FILENO, TCSAFLUSH, &orig_termios) == -1) erred();
-}
