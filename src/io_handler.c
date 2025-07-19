@@ -11,7 +11,7 @@
 char getKEY(void){
 	char c;
 	
-	read(STDIN_FILENO, &c, 1);
+	if(read(STDIN_FILENO, &c, 1) == -1) erred();
 	
 	return c;
 }
